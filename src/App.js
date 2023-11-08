@@ -18,17 +18,18 @@ function App() {
   const [dataFromAPI, setDataFromAPI] = useState([]);
 
   useEffect(() => {
-    axios.get('https://dummyjson.com/products?select=title,price,description,images').then(res => {
-      console.log(res.data);
-      setDataFromAPI(res.data.products);
-    })
-    .catch((error) => {
-      console.error("Error fetch:", error);
-    });
+    axios.get('https://dummyjson.com/products?select=title,price,description,images')
+      .then(res => {
+        console.log(res.data);
+        setDataFromAPI(res.data.products);
+      })
+      .catch((error) => {
+        console.error("Error fetch:", error);
+      });
   }, []);
 
   return (
-    <div className="Apps">
+    <div className="Apps" style={{ backgroundColor: 'grey' }}>
       <Navbar expand="lg" className="bg-body-tertiary">
         <Container fluid>
           <Navbar.Brand href="#">Navbar scroll</Navbar.Brand>
@@ -58,14 +59,14 @@ function App() {
       <div className="container mt-4">
         <div className="row">
           {dataFromAPI.map((item, index) => (
-            <div key={index} className="col-sm-6 col-md-4 col-lg-4 mb-4">
-              <MDBCard style={{ width: '18rem' }}>
+            <div key={index} className="col-sm-6 col-md-4 col-lg-3 mb-4">
+              <MDBCard style={{ width: '14rem' }}>
                 <MDBCardImage src={item.images[0]} alt="" position="top" style={{ height: '5rem', objectFit: 'cover' }} />
                 <MDBCardBody>
                   <MDBCardTitle>{item.title}</MDBCardTitle>
                   <MDBCardText>{item.description}</MDBCardText>
                   <MDBCardText>${item.price}</MDBCardText>
-                  <MDBBtn href="#">Checkout</MDBBtn>
+                  <MDBBtn style={{ width: '100%' }}>Checkout</MDBBtn>
                 </MDBCardBody>
               </MDBCard>
             </div>
